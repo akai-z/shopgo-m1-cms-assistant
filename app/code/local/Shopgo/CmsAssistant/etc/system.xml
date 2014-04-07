@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <tabs>
+        <shopgo translate="label" module="cmsassistant">
+            <label>ShopGo</label>
+            <sort_order>100</sort_order>
+        </shopgo>
+    </tabs>
+    <sections>
+        <shopgo_cmsassistant translate="label" module="cmsassistant">
+            <label>CMS Assistant</label>
+            <tab>shopgo</tab>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label" module="cmsassistant">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <allowed_ips translate="label">
+                            <label>Allowed IPs (Separated by commas)</label>
+                            <comment><![CDATA[Clients that are allowed to access this feature.<br />Leave empty for access from any location.<br />(e.g. section/group/field)]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </allowed_ips>
+                        <system_config translate="label">
+                            <label>System Configurations</label>
+                            <comment><![CDATA[Check for other system configurations by their paths, before enabling CMS assistant.<br />Each path in a separate line.]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </system_config>
+                    </fields>
+                </general>
+                <assistants translate="label" module="cmsassistant">
+                    <label>Assistants</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <block translate="label">
+                            <label>Block</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </block>
+                        <page translate="label">
+                            <label>Page</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </page>
+                        <shopgo_bannerslider translate="label">
+                            <label>ShopGo Bannerslider</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </shopgo_bannerslider>
+                    </fields>
+                </assistants>
+            </groups>
+        </shopgo_cmsassistant>
+    </sections>
+</config>
