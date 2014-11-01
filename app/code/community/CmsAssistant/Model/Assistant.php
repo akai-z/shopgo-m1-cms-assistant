@@ -5,14 +5,14 @@ class Shopgo_CmsAssistant_Model_Assistant extends Mage_Core_Model_Abstract
     const CORE_HTTP_HELPER            = 'core/http';
     const URL_PATH_CMS_ASSISTANT_EDIT = 'shopgo/cms_assistant/edit';
 
-    public function isEnabled($checkDepends = true)
+    public function isEnabled($storeId = 0)
     {
         $helper = Mage::helper('cmsassistant');
 
         $enabled = $helper->getConfigData(
             Shopgo_CmsAssistant_Helper_Data::CONFIG_GENERAL_FIELD_ENABLED,
             Shopgo_CmsAssistant_Helper_Data::CONFIG_GROUP_GENERAL,
-            Mage::app()->getStore()
+            Mage::app()->getStore($storeId)
         );
 
         return $enabled

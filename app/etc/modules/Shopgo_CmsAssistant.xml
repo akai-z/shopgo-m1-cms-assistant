@@ -3,7 +3,10 @@
     <modules>
         <Shopgo_CmsAssistant>
             <active>true</active>
-            <codePool>local</codePool>
+            <codePool>community</codePool>
+            <depends>
+                <Shopgo_Core/>
+            </depends>
         </Shopgo_CmsAssistant>
     </modules>
 </config>

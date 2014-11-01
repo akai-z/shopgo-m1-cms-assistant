@@ -8,8 +8,10 @@ class Shopgo_CmsAssistant_Block_Assistant
 
     public function coreBlockAbstractToHtmlAfter(Varien_Event_Observer $observer)
     {
-        if (!Mage::app()->getStore()->isAdmin()
-            && Mage::getModel('cmsassistant/assistant')->isEnabled()) {
+        $store = Mage::app()->getStore();
+
+        if (!$store->isAdmin()
+            && Mage::getModel('cmsassistant/assistant')->isEnabled($store->getId())) {
             $transport = $observer->getTransport();
 
             if ($transport->getHtml()) {
@@ -44,13 +46,16 @@ class Shopgo_CmsAssistant_Block_Assistant
         switch (true) {
             case $model->isBlockAssistantEnabled()
                 && in_array(self::CMS_BLOCK_BLOCK, $classes):
+                $cmsBlockInfo = $helper->getCmsBlockInfo(
+                    $blockObject->getBlockId()
+                );
+
                 $assistantHtml = $this->getAssistantHtml(
                     array(
-                        'type'  => 'block',
-                        'title' => '',
-                        'id'    => $helper->getCmsBlockIdentifier(
-                            $blockObject->getBlockId()
-                        )
+                        'type'       => 'block',
+                        'title'      => '',
+                        'identifier' => $cmsBlockInfo['identifier'],
+                        'id'         => $cmsBlockInfo['id']
                     )
                 );
                 break;
@@ -58,9 +63,10 @@ class Shopgo_CmsAssistant_Block_Assistant
                 && in_array(self::CMS_PAGE_BLOCK, $classes):
                 $assistantHtml = $this->getAssistantHtml(
                     array(
-                        'type'  => 'page',
-                        'title' => '',
-                        'id'    => $blockObject->getPage()->getIdentifier()
+                        'type'       => 'page',
+                        'title'      => '',
+                        'identifier' => $blockObject->getPage()->getIdentifier(),
+                        'id'         => $blockObject->getPage()->getId()
                     )
                 );
                 break;
@@ -86,14 +92,17 @@ class Shopgo_CmsAssistant_Block_Assistant
     {
         $helper = Mage::helper('cmsassistant');
 
-        $editUrlParams  = array('type' => $var['type']);
+        $editUrlParams  = array(
+            'type'  => $var['type'],
+            'store' => Mage::app()->getStore()->getStoreId(),
+            'id'    => $var['id']
+        );
         $assistantId    = "shopgo_cms_{$var['type']}_assistant";
         $assistantTitle = $var['title'];
 
-        if (isset($var['id'])) {
-            $editUrlParams['id'] = $var['id'];
-            $assistantId        .= "_{$var['id']}";
-            $assistantTitle      = $var['id'];
+        if (isset($var['identifier'])) {
+            $assistantId   .= "_{$var['identifier']}";
+            $assistantTitle = $var['identifier'];
         }
 
         $editUrl = Mage::getUrl(
@@ -102,15 +111,15 @@ class Shopgo_CmsAssistant_Block_Assistant
         );
 
         $html = <<<EOF
-<div class="shopgo-cms-assistant-wrapper sca-{$var['type']}" id="$assistantId">
-    <div class="shopgo-cms-assistant-content">
-        <div class="shopgo-cms-assistant-label sca-{$var['type']} ribbon">
-            <div class="shopgo-cms-assistant-click-here">{$helper->__('Click bellow to Edit')}</div>
-            <a href="$editUrl" target="_blank">$assistantTitle</a>
+<div class="shopgo-cms-assistant-wrapper sca-{$var['type']} sca-wrapper-reset" id="$assistantId">
+    <div class="shopgo-cms-assistant-content sca-content-reset">
+        <div class="shopgo-cms-assistant-label sca-{$var['type']} ribbon sca-label-reset">
+            <div class="shopgo-cms-assistant-click-here sca-click-here-reset">{$helper->__('Click bellow to Edit')}</div>
+            <a class="shopgo-cms-assistant-link sca-link-reset" href="$editUrl" target="_blank">$assistantTitle</a>
         </div>
         %s
-        <div class="shopgo-cms-assistant-content-highlight sca-{$var['type']}"></div>
-        <div class="clear"></div>
+        <div class="shopgo-cms-assistant-content-highlight sca-{$var['type']} sca-content-highlight-reset"></div>
+        <div class="clear sca-clear-reset"></div>
     </div>
 </div>
 EOF;

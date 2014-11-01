@@ -13,12 +13,13 @@ class Shopgo_CmsAssistant_Cms_AssistantController extends Mage_Adminhtml_Control
 
     public function editAction()
     {
-        $type = $this->getRequest()->getParam('type');
-        $id   = $this->getRequest()->getParam('id');
+        $type  = $this->getRequest()->getParam('type');
+        $store = $this->getRequest()->getParam('store');
+        $id    = $this->getRequest()->getParam('id');
 
         $model = Mage::getModel('cmsassistant/assistant');
 
-        if (!$model->isEnabled()) {
+        if (!$model->isEnabled($store)) {
             $this->_noRoute();
             return;
         }
