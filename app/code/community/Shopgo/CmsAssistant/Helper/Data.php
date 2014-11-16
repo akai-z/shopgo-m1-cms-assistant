@@ -10,7 +10,7 @@ class Shopgo_CmsAssistant_Helper_Data extends Shopgo_Core_Helper_Abstract
     const CONFIG_ASSISTANTS_FIELD_BLOCK               = 'block';
     const CONFIG_ASSISTANTS_FIELD_PAGE                = 'page';
     const CONFIG_ASSISTANTS_FIELD_SHOPGO_BANNERSLIDER = 'shopgo_bannerslider';
-    
+
     protected $_logFile = 'cms_assistant.log';
 
     public function getConfigData($field, $group, $store = null)
@@ -62,7 +62,9 @@ class Shopgo_CmsAssistant_Helper_Data extends Shopgo_Core_Helper_Abstract
 
     public function getCmsBlockInfo($id)
     {
-        $block = Mage::getModel('cms/block')->load($id);
+        $block = Mage::getModel('cms/block')
+            ->setStoreId(Mage::app()->getStore()->getId())
+            ->load($id);
 
         $info = array(
             'identifier' => $block->getIdentifier(),
