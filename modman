@@ -1,0 +1,4 @@
+skin/frontend/base/default/shopgo/cms_assistant/                     skin/frontend/base/default/shopgo/cms_assistant/
+app/design/frontend/base/default/layout/shopgo/cms_assistant.xml     app/design/frontend/base/default/layout/shopgo/cms_assistant.xml
+app/etc/modules/Shopgo_CmsAssistant.xml                              app/etc/modules/Shopgo_CmsAssistant.xml
+app/code/community/Shopgo/CmsAssistant/                              app/code/community/Shopgo/CmsAssistant/
