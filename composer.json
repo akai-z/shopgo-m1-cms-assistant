@@ -8,7 +8,7 @@
     "description": "A Magento extension that allows users to easily access CMS pages/blocks admin panel pages from the frontend",
     "require": {
         "magento-hackathon/magento-composer-installer": "*",
-        "shopgo/core": "dev-master"
+        "shopgo/core": "*"
     },
     "authors":[
         {
