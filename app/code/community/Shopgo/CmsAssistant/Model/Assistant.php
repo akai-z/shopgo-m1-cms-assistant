@@ -3,7 +3,7 @@
 class Shopgo_CmsAssistant_Model_Assistant extends Mage_Core_Model_Abstract
 {
     const CORE_HTTP_HELPER            = 'core/http';
-    const URL_PATH_CMS_ASSISTANT_EDIT = 'shopgo/cms_assistant/edit';
+    const URL_PATH_CMS_ASSISTANT_EDIT = 'adminhtml/shopgo_cms_assistant_index/edit';
 
     public function isEnabled($storeId = 0)
     {

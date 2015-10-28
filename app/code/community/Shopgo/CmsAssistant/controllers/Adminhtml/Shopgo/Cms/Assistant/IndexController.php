@@ -1,6 +1,6 @@
 <?php
 
-class Shopgo_CmsAssistant_Cms_AssistantController extends Mage_Adminhtml_Controller_Action
+class Shopgo_CmsAssistant_Adminhtml_Shopgo_Cms_Assistant_IndexController extends Mage_Adminhtml_Controller_Action
 {
     public function preDispatch()
     {
@@ -43,7 +43,7 @@ class Shopgo_CmsAssistant_Cms_AssistantController extends Mage_Adminhtml_Control
                     break;
                 case 'bannerslider' == $type
                     && $model->isShopgoBannerSliderAssistantEnabled():
-                    $url    = 'bannerslider/adminhtml_bannerslider/index';
+                    $url    = 'adminhtml/shopgo_bannerslider/index';
                     break;
                 default:
                     $helper->log('Invalid URL request.');
