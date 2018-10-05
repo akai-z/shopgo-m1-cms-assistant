@@ -1,4 +1,4 @@
-# ShopGo CMS Assistant #
+# ShopGo CMS Assistant `[UNMAINTAINED]` #
 
 ### About Repository ###
 
